@@ -1,5 +1,12 @@
-FROM python:3.6.3-alpine3.6
+FROM cyversevice/rstudio-verse:latest
 
 WORKDIR /app
 COPY . /app
-CMD["python", "hello_world.py"]
+
+RUN R -e "install.packages('lavaan', dependencies=TRUE)" &&\ 
+           R -e "install.packages(lavaan, dependencies=TRUE)" &&\
+           R -e "install.packages('car', dependencies=TRUE)" &&\
+           R -e "install.packages('foreign, dependencies=TRUE)" &&\
+           R -e "install.packages(reshape2, dependencies=TRUE)"
+
+
